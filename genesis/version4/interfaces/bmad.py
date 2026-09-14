@@ -118,7 +118,7 @@ def genesis4_eles_from_tao_ele(tao, ele_id):
     Raises
     ------
     NotImplementedError
-        If the element type or offset is not supported.
+        If the element type, offset, or tilt is not supported.
     ValueError
         If the undulator length is inconsistent with the number of periods and period length.
     """
@@ -135,6 +135,14 @@ def genesis4_eles_from_tao_ele(tao, ele_id):
     L = info.get("L", 0)
     x_offset = info.get("X_OFFSET", 0)
     y_offset = info.get("Y_OFFSET", 0)
+
+    # Genesis4 does not support rotation; a tilt is silently dropped
+    tilt = info.get("TILT", 0)
+    if tilt != 0:
+        raise NotImplementedError(
+            f"{key} '{name}' has tilt = {tilt} rad. Genesis4 does not support "
+            "tilted elements."
+        )
 
     if key == "beginning_ele":
         eles = []
