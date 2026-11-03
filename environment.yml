@@ -3,7 +3,7 @@ name: lume-genesis-dev
 channels:
   - conda-forge
 dependencies:
-  - python>=3.10
+  - python>=3.11
   # Core python dependencies
   - lark
   - lume-base
@@ -39,4 +39,4 @@ dependencies:
   - mkdocs-jupyter
   - mkdocs-material
   - mkdocstrings-python
-  - pip
+  - pip >=26.2.2
